@@ -77,7 +77,7 @@ class DTImportCSV extends SpecialPage {
 					'selected' => 'selected',
 					'value' => 'utf8'
 				), 'UTF-8' ) . "\n";
-		$utf16OleptionText = "\t" . Xml::element( 'option',
+		$utf16leOptionText = "\t" . Xml::element( 'option',
 				array(
 					'value' => 'utf16le'
 				), 'UTF-16LE' ) . "\n";
