@@ -12,10 +12,10 @@ define( 'DATA_TRANSFER_VERSION', '1.0' );
 
 $wgExtensionCredits['specialpage'][] = array(
 	'path'           => __FILE__,
-	'name'           => 'Data Transfer',
+	'name'           => 'ITBC Data Transfer',
 	'version'        => DATA_TRANSFER_VERSION,
-	'author'         => 'Yaron Koren',
-	'url'            => 'https://www.mediawiki.org/wiki/Extension:Data_Transfer',
+	'author'         => 'Nattawut Chairatansongporn',
+	'url'            => 'http://gitlab.bbtv.co.th/dev-01/Kamthai-MediaWiki_DataTransfer',
 	'descriptionmsg' => 'datatransfer-desc',
 	'license-name'   => 'GPL-2.0-or-later'
 );

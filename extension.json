@@ -1,12 +1,12 @@
 {
 	"@Note": "When updating this file please also update DataTransfer.php with the same changes.",
-	"name": "Data Transfer",
+	"name": "ITBC Data Transfer",
 	"version": "1.0",
 	"author": [
-		"Yaron Koren",
+		"Nattawut Chairatanasongporn",
 		"..."
 	],
-	"url": "https://www.mediawiki.org/wiki/Extension:Data_Transfer",
+	"url": "http://gitlab.bbtv.co.th/dev-01/Kamthai-MediaWiki_DataTransfer",
 	"descriptionmsg": "datatransfer-desc",
 	"license-name": "GPL-2.0-or-later",
 	"type": "specialpage",

@@ -68,6 +68,10 @@ class DTImportCSV extends SpecialPage {
 
 	protected function printForm() {
 		$formText = DTUtils::printFileSelector( $this->getFiletype() );
+		$asciiptionText = "\t" . Xml::element( 'option',
+				array(
+					'value' => 'ascii'
+				), 'ASCII' ) . "\n";
 		$utf8OptionText = "\t" . Xml::element( 'option',
 				array(
 					'selected' => 'selected',
@@ -75,8 +79,12 @@ class DTImportCSV extends SpecialPage {
 				), 'UTF-8' ) . "\n";
 		$utf16OptionText = "\t" . Xml::element( 'option',
 				array(
-					'value' => 'utf16'
-				), 'UTF-16' ) . "\n";
+					'value' => 'utf16le'
+				), 'UTF-16LE' ) . "\n";
+				$utf16OptionText = "\t" . Xml::element( 'option',
+				array(
+					'value' => 'utf16be'
+				), 'UTF-16BE' ) . "\n";
 		$encodingSelectText = Xml::tags( 'select',
 				array( 'name' => 'encoding' ),
 				"\n" . $utf8OptionText . $utf16OptionText. "\t" ) . "\n\t";
@@ -100,7 +108,7 @@ class DTImportCSV extends SpecialPage {
 		}
 
 		$table = array();
-		if ( $encoding == 'utf16' ) {
+		if ( $encoding == 'utf16le' || $encoding == 'utf16be' ) {
 			// Change encoding to UTF-8.
 			// Starting with PHP 5.3 we could use str_getcsv(),
 			// which would save the tempfile hassle.
@@ -108,8 +116,12 @@ class DTImportCSV extends SpecialPage {
 			$csv_string = '';
 			while ( !feof( $csv_file ) ) {
 				$csv_string .= fgets( $csv_file, 65535 );
- 			}
-			fwrite( $tempfile, iconv( 'UTF-16', 'UTF-8', $csv_string ) );
+			}
+			if($encoding == 'utf16be') {
+				fwrite( $tempfile, iconv( 'UTF-16BE', 'UTF-8', $csv_string ) );
+			} else {
+				fwrite( $tempfile, iconv( 'UTF-16LE', 'UTF-8', $csv_string ) );
+			}
 			fseek( $tempfile, 0 );
 			while ( $line = fgetcsv( $tempfile ) ) {
 				array_push( $table, $line );
@@ -122,7 +134,11 @@ class DTImportCSV extends SpecialPage {
 				// characters.
 				$convertedLine = array();
 				foreach ( $line as $value ) {
-					$convertedLine[] = mb_convert_encoding( $value, 'UTF-8', 'ASCII' );
+					if($encoding == 'ascii'){
+						$convertedLine[] = mb_convert_encoding( $value, 'UTF-8', 'ASCII' );
+					} else {
+						$convertedLine[] = $value; 
+					}
 				}
 				array_push( $table, $convertedLine );
 			}
