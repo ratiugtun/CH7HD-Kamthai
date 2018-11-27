@@ -68,7 +68,7 @@ class DTImportCSV extends SpecialPage {
 
 	protected function printForm() {
 		$formText = DTUtils::printFileSelector( $this->getFiletype() );
-		$asciiptionText = "\t" . Xml::element( 'option',
+		$asciiOptionText = "\t" . Xml::element( 'option',
 				array(
 					'value' => 'ascii'
 				), 'ASCII' ) . "\n";
@@ -77,17 +77,17 @@ class DTImportCSV extends SpecialPage {
 					'selected' => 'selected',
 					'value' => 'utf8'
 				), 'UTF-8' ) . "\n";
-		$utf16OptionText = "\t" . Xml::element( 'option',
+		$utf16leOptionText = "\t" . Xml::element( 'option',
 				array(
 					'value' => 'utf16le'
 				), 'UTF-16LE' ) . "\n";
-				$utf16OptionText = "\t" . Xml::element( 'option',
+		$utf16beOptionText = "\t" . Xml::element( 'option',
 				array(
 					'value' => 'utf16be'
 				), 'UTF-16BE' ) . "\n";
 		$encodingSelectText = Xml::tags( 'select',
 				array( 'name' => 'encoding' ),
-				"\n" . $utf8OptionText . $utf16OptionText. "\t" ) . "\n\t";
+				"\n" . $utf8OptionText . $asciiOptionText. $utf16beOptionText . $utf16leOptionText. "\t" ) . "\n\t";
 		$formText .= "\t" . Xml::tags( 'p', null, $this->msg( 'dt_import_encodingtype', 'CSV' )->text() . " " . $encodingSelectText ) . "\n";
 		$formText .= "\t" . '<hr style="margin: 10px 0 10px 0" />' . "\n";
 		$formText .= DTUtils::printExistingPagesHandling();
