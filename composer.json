@@ -1,5 +1,5 @@
 {
-	"name": "mediawiki/data-transfer",
+	"name": "dev-01/Kamthai-MediaWiki_DataTransfer",
 	"type": "mediawiki-extension",
 	"description": "A MediaWiki extension for importing and exporting data in CSV and XML formats.",
 	"keywords": [
@@ -9,7 +9,7 @@
 		"import",
 		"export"
 	],
-	"homepage": "https://www.mediawiki.org/wiki/Extension:Data_Transfer",
+	"homepage": "http://gitlab.bbtv.co.th/dev-01/Kamthai-MediaWiki_DataTransfer",
 	"license": "GPL-2.0-or-later",
 	"authors": [
 		{
@@ -59,6 +59,9 @@
 		},
 		{
 			"name": "Yaron Koren"
+		},
+		{
+			"name": "Nattawut Chairatanasongporn"
 		}
 	],
 	"support": {
